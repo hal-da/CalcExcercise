@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         String inputString = "";
+        System.out.println("Welcome to the calculator. Type 'quit' for quitting, 'help' for help.");
 
 
         while (!inputString.equals("quit")){
@@ -20,10 +21,10 @@ public class Main {
                     double operator = Double.parseDouble(inpArr[1]);
                     System.out.println(inpArr[0]+"(" + inpArr[1] + ")" + " = " + operation.apply(operator));
                 } catch (UnknownOperationException e) {
-                    inputString = "rules";
+                    inputString = "help";
                 } catch (NumberFormatException e){
                     System.out.println("Input was not a number. ");
-                    inputString = "rules";
+                    inputString = "help";
 
                 }
             } else if (inpArr.length == 3){
@@ -34,11 +35,11 @@ public class Main {
                     System.out.println(inputString + " = " + operation.apply(a,b));
                 } catch (NumberFormatException e){
                     System.out.println("Input was not a number. ");
-                    inputString = "rules";
+                    inputString = "help";
                 } catch (UnknownOperationException e){
-                    inputString = "rules";
+                    inputString = "help";
                 }
-            } else if(inputString.equals("rules")) {
+            } else if(inputString.equals("help")) {
                 System.out.println("Allowed operations: a + b, a - b, a * b, a / b, sin x, cos x, tan x, cotan x");
             } else if(!inputString.equals("quit"))System.out.println("there seems to be a typo (" + inputString + "). Type 'quit' for quitting, 'rules' for rules");
 
