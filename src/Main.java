@@ -5,14 +5,14 @@ import java.util.function.UnaryOperator;
 public class Main {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String inp = "";
+        String inputString = "";
 
 
-        while (!inp.equals("quit")){
+        while (!inputString.equals("quit")){
 
             System.out.print("Input: ");
-            inp = sc.nextLine().trim();
-            String[] inpArr = inp.split(" ");
+            inputString = sc.nextLine().trim().replaceAll("\\s+", " ");
+            String[] inpArr = inputString.split(" ");
 
             if(inpArr.length == 2){
                 try {
@@ -20,24 +20,27 @@ public class Main {
                     double operator = Double.parseDouble(inpArr[1]);
                     System.out.println(inpArr[0]+"(" + inpArr[1] + ")" + " = " + operation.apply(operator));
                 } catch (UnknownOperationException e) {
-                    inp = "rules";
+                    inputString = "rules";
                 } catch (NumberFormatException e){
-                    System.out.println("Number for operation has to be a double");
+                    System.out.println("Input was not a number. ");
+                    inputString = "rules";
+
                 }
             } else if (inpArr.length == 3){
                 try {
                     double a = Double.parseDouble(inpArr[0]);
                     BinaryOperator<Double> operation = getBinaryOperation(inpArr[1]);
                     double b = Double.parseDouble(inpArr[2]);
-                    System.out.println(inp + " = " + operation.apply(a,b));
+                    System.out.println(inputString + " = " + operation.apply(a,b));
                 } catch (NumberFormatException e){
-                    System.out.println("Number for operation has to be a double");
+                    System.out.println("Input was not a number. ");
+                    inputString = "rules";
                 } catch (UnknownOperationException e){
-                    inp = "rules";
+                    inputString = "rules";
                 }
-            } else if(inp.equals("rules")) {
+            } else if(inputString.equals("rules")) {
                 System.out.println("Allowed operations: a + b, a - b, a * b, a / b, sin x, cos x, tan x, cotan x");
-            } else if(!inp.equals("quit"))System.out.println("there seems to be a typo (" + inp + "). Type 'quit' for quitting, 'rules' for rules");
+            } else if(!inputString.equals("quit"))System.out.println("there seems to be a typo (" + inputString + "). Type 'quit' for quitting, 'rules' for rules");
 
 
         }
