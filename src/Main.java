@@ -21,24 +21,15 @@ public class Main {
             }
 
             if(inputString.equals("help")) {
-                printHelp();
+                Calculator.printHelp();
             } else {
                 //could not do anything, got to be wrong input
-                printWrongInput(inputString);
+                Calculator.printWrongInput(inputString);
             }
 
         }
 
         System.out.println("goodbye");
         sc.close();
-    }
-
-
-    public static void printHelp(){
-        System.out.println("Allowed operations: a + b, a - b, a * b, a / b, sin x, cos x, tan x, cotan x");
-    }
-
-    public static void printWrongInput(String inputString){
-        System.out.println("Wring input. Can not compute '" + inputString + "' at all. Type 'quit' for quitting, 'help' for help");
     }
 }
